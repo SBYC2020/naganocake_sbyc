@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 # 会員側のルーティング
   devise_for :customers, controllers: {
-  	sessions:      'devise/customer/sessions',
-  	registrations: 'devise/customer/registrations'
+  	sessions:      'devise/customers/sessions',
+  	registrations: 'devise/customers/registrations'
   }
 
   root 'home#top'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Devise::Customer::SessionsController < Devise::SessionsController
+class Devise::Customers::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
