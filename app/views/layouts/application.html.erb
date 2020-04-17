@@ -10,7 +10,7 @@
   </head>
 
   <body>
-      <% if @admin == @customer%>
+      <% if request.url.include? "admin" %>
         <%= render 'layouts/admin_header' %>
         <% elsif %>
         <%= render "layouts/customer_header" %>
