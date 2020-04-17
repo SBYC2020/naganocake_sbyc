@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row">
+		<h3>商品一覧</h3>
+		<div class="col-xs-9 col-xs-offset-2">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>商品ID</th>
+					<th>商品名</th>
+					<th>税込価格</th>
+					<th>ジャンル</th>
+					<th>ステータス</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @products.each do |p| %>
+					<tr>
+						<td><%= p.id %></td>
+						<td>
+							<%= link_to admin_product_path(p) do %>
+								<%= p.product_name %>
+							<% end %>
+							</td>
+						<td><%= p.tax_included_price %></td>
+						<td><%= p.genre.name %></td>
+						<td>
+							<% if p.sale_status == true %>
+								<p>販売中</p>
+							<% else %>
+								<p>販売停止中</p>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		</div>
+	</div>
+</div>
