@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'home#top'
   resources :carts, only: [:index, :create, :destroy, :update]
-  delete 'carts/empty', to: 'carts#empty_cart'
+  delete 'cart/empty', to: 'carts#empty_cart'
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :orders, only: [:new, :create, :index, :show]
   get 'orders/confirm', to: 'orders#confirm'
