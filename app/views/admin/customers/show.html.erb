@@ -1,10 +1,20 @@
 <div class="container">
 	<h1>会員詳細画面</h1>
+	<br>
+
 	<div class="row">
 		<div class="col-xs-3">
 			<p>顧客ID</p>
 		</div>
-		<div class="col-xs-3 col-offset-3">
+		<div class="col-xs-1">
+			<%= @customer.id %>
+		</div>
+		<div class="col-xs-1">
+			<% if @customer.account_status == true %>
+			<p>有効会員</p>
+			<% else %>
+			<p>退会済み</p>
+			<% end %>
 		</div>
 	</div>
 	<br>
@@ -13,7 +23,7 @@
 		<div class="col-xs-3">
 			<p>氏名</p>
 		</div>
-		<div class="col-xs-3 col-offset-3">
+		<div class="col-xs-3">
 			<%= @customer.name %>
 		</div>
 	</div>
@@ -23,7 +33,7 @@
 		<div class="col-xs-3">
 			<p>フリガナ</p>
 		</div>
-		<div class="col-xs-3 col-offset-3">
+		<div class="col-xs-3">
 			<%= @customer.kana_name %>
 		</div>
 	</div>
@@ -33,7 +43,7 @@
 		<div class="col-xs-3">
 			<p>郵便番号</p>
 		</div>
-		<div class="col-xs-3 col-offset-3">
+		<div class="col-xs-3">
 			<%= @customer.postal_code %>
 		</div>
 	</div>
@@ -43,7 +53,7 @@
 		<div class="col-xs-3">
 			<p>住所</p>
 		</div>
-		<div class="col-xs-3 col-offset-3">
+		<div class="col-xs-3">
 			<%= @customer.address %>
 		</div>
 	</div>
@@ -53,7 +63,7 @@
 		<div class="col-xs-3">
 			<p>電話番号</p>
 		</div>
-		<div class="col-offset-3">
+		<div class="col-xs-3">
 			<%= @customer.phone_number %>
 		</div>
 	</div>
@@ -63,7 +73,7 @@
 		<div class="col-xs-3">
 			<p>メールアドレス</p>
 		</div>
-		<div class="col-offset-3">
+		<div class="col-xs-3">
 			<%= @customer.email %>
 		</div>
 	</div>
