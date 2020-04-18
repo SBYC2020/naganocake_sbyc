@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 		# @total = total(current_customer) + @order.postage
 	end
 
+#とりあえず注文情報入力画面では注文を確定させないでsessionにデータを持たせておく
 	def create
 		session[:payment_method] = order_params[:payment_method]
 		if params[:address_info] == "self_address_info"
@@ -14,11 +15,23 @@ class OrdersController < ApplicationController
 			session[:postal_code] = current_customer.postal_code
 			session[:name] = current_customer.surname + current_customer.name
 		elsif params[:address_info] == "shipping_address_info"
+			address = order_params[:address]
+			 info_array = address.split(" ")
+			session[:postal_code] = info_array[0]
+			session[:address] = info_array[1]
+			session[:name] = info_array[2]
+		elsif params[:address_info] == "new_address_info"
+			session[:postal_code] = order_params[:postal_code]
 			session[:address] = order_params[:address]
+			session[:name] = order_params[:name]
 		end
-		if session[:payment_method].present? && session[:address].present?
+		if session[:payment_method].present? && session[:address].present? && session[:postal_code].present? && session[:name].present?
 			redirect_to order_confirm_url
 		end
+	end
+
+	def confirm
+
 	end
 
 
@@ -36,13 +49,6 @@ class OrdersController < ApplicationController
 	# 	end
 	# end
 
-	def confirm
-		@address = session[:address]
-		@unko = @address.split(" ")
-		session[:postal_code] = @unko[0]
-		session[:address] = @unko[1]
-		session[:name] = @unko[2]
-	end
 
 
 	private
