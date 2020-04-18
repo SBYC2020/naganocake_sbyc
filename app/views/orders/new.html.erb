@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row">
+		<h4>注文情報入力</h4>
+		<%= form_for @order do |f| %>
+			<p>支払い方法</p>
+
+			<div class="radio-inline">
+				<%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
+				<%= f.label :クレジットカード, class: "payment_method_label" %>
+			</div><br>
+
+			<div class="radio-inline">
+				<%= f.radio_button :payment_method, :銀行振込 %>
+				<%= f.label :銀行振込, class: "payment_method_label" %>
+			</div>
+
+			<p>お届け先</p>
+			<div class="radio-inline">
+				<%= radio_button_tag(:address_info, "self_address_info", checked: "checked") %>
+				<%= label_tag(:address_info, "ご自身の住所") %><br>
+				<span>〒<%= current_customer.postal_code %><%= current_customer.address %><br>
+						<%= current_customer.surname %><%= current_customer.name %>
+				</span>
+			</div><br>
+
+			<div class="radio-inline">
+				<%= radio_button_tag(:address_info, "shipping_address_info") %>
+				<%= label_tag(:address_info, "登録先住所から選択") %><br>
+				<%= f.collection_select :address, @shipping_addresses, :address_info, :address_info %>
+			</div>
+
+			<!-- <div class="radio_inline"> -->
+				<%#= radio_button_tag(:address_info, ) %>
+			<!-- </div> -->
+
+			<%= f.submit "注文確認画面へ" %>
+
+
+		<% end %>
+	</div>
+</div>
