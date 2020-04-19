@@ -35,7 +35,7 @@
 				<div class="radio-inline">
 					<%= radio_button_tag(:address_info, "shipping_address_info") %>
 					<%= label_tag(:address_info, "登録先住所から選択") %><br>
-					<%= f.collection_select :address, @shipping_addresses, :address_info, :address_info %>
+					<%= select_tag :address, options_from_collection_for_select(@shipping_addresses, :address_info, :address_info ) %>
 				</div>
 
 				<div class="radio_inline">

@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
 		@order = Order.new
 		@order.customer_id = current_customer.id
 		@shipping_addresses = ShippingAddress.where(customer_id: current_customer.id)
-		# @total = total(current_customer) + @order.postage
 	end
 
 #とりあえず注文情報入力画面では注文を確定させないでsessionにデータを持たせておく
@@ -15,8 +14,8 @@ class OrdersController < ApplicationController
 			session[:postal_code] = current_customer.postal_code
 			session[:name] = current_customer.surname + current_customer.name
 		elsif params[:address_info] == "shipping_address_info"
-			address = order_params[:address]
-			 info_array = address.split(" ")
+			address = params[:address]
+			info_array = address.split(" ")
 			session[:postal_code] = info_array[0]
 			session[:address] = info_array[1]
 			session[:name] = info_array[2]
@@ -31,23 +30,36 @@ class OrdersController < ApplicationController
 	end
 
 	def confirm
-
+		@carts = Cart.where(customer_id: current_customer.id)
+		@total = total(current_customer)
+		@claim = total(current_customer) + 800
 	end
 
 
 
-	# def 確認ページのアクションをここに作る
-	# 	@order = Order.new(order_params)
-	# 	@order.customer_id = current_customer.id
+	def finish
+		@order = Order.new
+		@order.customer_id = current_customer.id
+		@order.postal_code = session[:postal_code]
+		@order.address = session[:address]
+		@order.name = session[:name]
+		@order.postage = 800
+		@order.order_status = 0
+		@order.payment_method = session[:payment_method]
+		@order.total_payment = @order.postage + total(current_customer)
+		@order.save
 
-	# 	if params[:address_info] == "self_address_info"
-	# 		@order.postal_code = current_customer.postal_code
-	# 		@order.address = current_customer.address
-	# 		@order.name = current_customer.surname + current_customer.name
-	# 		@order.save
-	# 		redirect_to orders_confirm_url
-	# 	end
-	# end
+		#orders_productsテーブルへの保存
+		current_customer.carts.each do |cart|
+			@orders_product = OrdersProduct.new
+			@orders_product.order_id = @order.id
+			@orders_product.product_id = cart.product.id
+			@orders_product.quantity = cart.quantity
+			@orders_product.price = cart.product.tax_included_price
+			@orders_product.production_status = 0
+			@orders_product.save!
+		end
+	end
 
 
 

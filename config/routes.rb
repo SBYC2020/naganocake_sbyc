@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :orders, only: [:new, :create, :index, :show]
   get 'order/confirm', to: 'orders#confirm'
-  get 'orders/finish', to: 'orders#finish'
+  get 'order/finish', to: 'orders#finish'
   resources :products, only: [:show, :index]
 
   resource :customer, only: [:show, :edit, :update]
