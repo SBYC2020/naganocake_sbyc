@@ -7,7 +7,7 @@
 		<%= form_for(@product, url: admin_products_path) do |f| %>
 
 			<div class="form-group col-xs-4 col-xs-offset-2">
-				<%= attachment_image_tag @product, :image, :fill, 300, 250,fallback: "no_image.png" %>
+				<%= attachment_image_tag @product, :image, :fill, 300, 250, fallback: "no_image.png" %>
 				<%= f.attachment_field :image %>
 			</div>
 
