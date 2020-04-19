@@ -1,12 +1,16 @@
 class ProductsController < ApplicationController
+
+
 	def index
-		@products = Product.all
+		if params[:genre_id].exist?
+			@products = Product.where(genre_id: genre.id)
+		else
+			@products = Product.all
+		end
 	end
+
+
 	def show
 		@product = Product.find(params[:id])
-	end
-	private
-	def products_params
-		params.require(:products).permit(:image_id, :product_name, :tax_included_price, :product_description)
 	end
 end
