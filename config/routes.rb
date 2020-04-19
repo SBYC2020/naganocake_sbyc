@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   delete 'cart/empty', to: 'carts#empty_cart'
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
   resources :orders, only: [:new, :create, :index, :show]
-  get 'orders/confirm', to: 'orders#confirm'
-  get 'orders/finish', to: 'orders#finish'
+  get 'order/confirm', to: 'orders#confirm'
+  get 'order/finish', to: 'orders#finish'
   resources :products, only: [:show, :index]
 
   resource :customer, only: [:show, :edit, :update]
