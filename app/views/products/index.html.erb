@@ -4,25 +4,25 @@
 			<h3>商品一覧 (全x件)</h3>
 		</div>
 
-			<% @products.each do |product| %>
-			<div class="row form-group">
-				<div class="col-xs-3" >
+		<% @products.each do |product| %>
+		<div class="row form-group">
+			<div class="col-xs-3" >
 
-					 <%= attachment_image_tag product, :image_id, :limit, 200,200, format: 'jpeg',size: "200x200" %>
-				</div>
-				<div class="col-xs-3" >
+				<%= attachment_image_tag product, :image, :limit, 50,50, format: 'jpeg',size: "50x50" %>
+			</div>
+			<div class="col-xs-3" >
 
-					<h4> 商品名<%= link_to product.product_name,products_path %></h4>
-				</div>
-				<div>
-					<div class="col-xs-3" >
-						<h4> <%= product.tax_included_price %>円</h4>
-					</div>
+				<h4> 商品名<%= link_to product.product_name,product_path(product) %></h4>
+			</div>
+			<div>
+				<div class="col-xs-3" >
+					<h4> <%= product.tax_included_price %>円</h4>
 				</div>
 			</div>
+		</div>
 
 
-			<% end %>
+		<% end %>
 		
 
 

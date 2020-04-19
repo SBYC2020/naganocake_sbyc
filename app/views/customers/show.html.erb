@@ -6,29 +6,25 @@
 		<%= link_to 'パスワードを変更する', edit_admin_password_path,class: "btn btn-success col-xs-2" %>
 	</div>
 	<table  class="table table-striped table-bordered">
-		<!-- <div class="row">
-			<div class="col-xs-8"> -->
-
+		
 				<tr>
-					<th>氏名</th><td><%= current_customer.surname %></td>
+					<th>氏名</th><td><%= current_customer.name %></td>
 				</tr>
 				<tr>
 					<th>カナ</th><td><%= current_customer.surname %></td>
 				</tr>
 				<tr>
-					<th>郵便番号</th><td><%= current_customer.surname %></td>
+					<th>郵便番号</th><td><%= current_customer.postal_code %></td>
 				</tr>
 				<tr>
-					<th>住所</th><td><%= current_customer.surname %></td>
+					<th>住所</th><td><%= current_customer.address %></td>
 				</tr>
 				<tr>
-					<th>電話番号</th><td><%= current_customer.surname %></td>
+					<th>電話番号</th><td><%= current_customer.phone_number %></td>
 				</tr>
 				<tr>
-					<th>メールアドレス</th><td><%= current_customer.surname %></td>
+					<th>メールアドレス</th><td><%= current_customer.email %></td>
 				</tr>
-			<!-- </div>
-			</div> -->
 		</table>
 	<div class="row"> 
 		<h4>配送先</h4>

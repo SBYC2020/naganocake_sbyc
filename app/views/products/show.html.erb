@@ -1,1 +1,23 @@
-show.html.erb
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-2">
+		<%= attachment_image_tag(@product,:image,:limit, 150,150, format: 'jpeg',size: "150x150" ) %>
+	    </div>
+		<div class="col-xs-4">
+			<table class="table">
+				<tbody>
+
+					<tr>
+						<td><%= @product.product_name %></td>
+					</tr>
+					<tr>
+						<td><%= @product.product_description %></td>
+						<tr>
+							<td><%= @product.tax_included_price %>円</td>
+						</tr>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
