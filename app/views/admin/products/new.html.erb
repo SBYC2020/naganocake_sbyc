@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-offset-1">
+			<h3>商品登録</h3>
+		</div>
+
+		<%= form_for(@product, url: admin_products_path) do |f| %>
+
+			<div class="form-group col-xs-4 col-xs-offset-2">
+				<%= attachment_image_tag @product, :image, :fill, 300, 250, fallback: "no_image.png" %>
+				<%= f.attachment_field :image %>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<%= f.label :商品名 %>
+					<%= f.text_field :product_name, class: "form-control" %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :商品説明 %>
+					<%= f.text_area :product_description, size: "40x7", class: "form-control" %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :ジャンル %>
+					<%= f.collection_select :genre_id, @genres, :id, :name %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :価格 %>
+					<%= f.number_field :tax_included_price %>円
+				</div>
+
+				<div class="form-group">
+					<%= f.label :販売ステータス %>
+					<%= f.select :sale_status, [["販売中", true],["売り切れ中", false]] %>
+				</div>
+
+				<div class="action col-xs-1 col-xs-offset-10">
+					<%= f.submit "新規登録", class: "btn btn-primary" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>

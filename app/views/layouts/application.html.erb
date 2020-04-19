@@ -10,6 +10,12 @@
   </head>
 
   <body>
+      <% if request.url.include? "admin" %>
+        <%= render 'layouts/admin_header' %>
+        <% else %>
+        <%= render "layouts/customer_header" %>
+      <% end %>
+
     <%= yield %>
   </body>
 </html>

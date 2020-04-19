@@ -1,0 +1,102 @@
+<div class="container">
+
+<h1>会員編集画面</h1>
+<br>
+
+<%= render "error", customer: @customer %>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<P>会員ID </P>
+		</div>
+		<div class="col-xs-3">
+			<%= @customer.id %>
+		</div>
+	</div>
+	<br>
+
+	<%= form_for @customer, url: admin_customer_path(@customer) do |f| %>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.label :氏名 %>
+		</div>
+		<div class="col-xs-3">
+			<%= f.text_field :surname, class: "surname", placeholder: "姓" %>
+		</div>
+　　　　　<div class="col-xs-3">
+			<%= f.text_field :name, class: "name", placeholder: "名" %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.label :フリガナ %>
+		</div>
+		<div class="col-xs-3">
+			<%= f.text_field :kana_surname, class: "kana_surname", placeholder: "セイ" %>
+		</div>
+　　　　　<div class="col-xs-3">
+			<%= f.text_field :kana_name, class: "kana_name", placeholder: "メイ" %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.label :郵便番号 %>
+		</div>
+		<div class="col-xs-3">
+			<%= f.text_field :postal_code, class: "postal_code", placeholder: "郵便番号" %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.label :住所 %>
+		</div>
+		<div class="col-xs-3">
+			<%= f.text_field :address, class: "address", placeholder: "住所" %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.label :電話番号 %>
+		</div>
+		<div class="col-xs-3">
+			<%= f.text_field :phone_number, class: "phone_number", placeholder: "電話番号" %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.label :メールアドレス %>
+		</div>
+		<div class="col-xs-3">
+            <%= f.email_field :email, class: "email", placeholder: "メールアドレス"  %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<%= f.label :会員ステータス %>
+		</div>
+		<div class="col-xs-3">
+		<label><%= f.radio_button :account_status, true %> 有効 </label>
+		<label><%= f.radio_button :account_status, false %> 退会済み</label>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		    <%= f.submit "変更を保存する",class: 'btn btn-primary col-xs-2' %>
+	</div>
+<% end %>
+
+</div>

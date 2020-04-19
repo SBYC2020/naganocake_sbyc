@@ -1,0 +1,24 @@
+<nav class="navbar navbar-dark" style="padding: 20px 100px; background-color:#2f4f4f;　">
+  <div class="container-fluid">
+    <div class="navbar-header" style="color: #ffffff;">
+      <h1 style="border: solid; :1px; padding: 10px 30px;">LOGO</h1>
+    </div>
+    <div class="collapse navbar-collapse">
+     <ul class="nav navbar-nav navbar-right" style="font-size: 20px; color: #ffffff;">
+        <% if customer_signed_in? %>
+          <li>ようこそ<%= current_customer.name %>さん！</li>
+
+          <li><%= link_to 'マイページ', customer_path %></li>
+          <li><%= link_to '商品一覧', products_path %></li>
+          <li><%= link_to 'カート', carts_path %></li>
+          <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to '商品一覧', products_path %></li>
+          <li><%= link_to '新規登録', new_customer_registration_path %></li>
+          <li><%= link_to 'ログイン', new_customer_session_path%></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
