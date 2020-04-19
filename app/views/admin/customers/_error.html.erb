@@ -1,0 +1,8 @@
+<% if @customer.errors.any? %>
+  <h3><%= @customer.errors.count %>error occurrence</h3><!--エラーメッセ-->
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
