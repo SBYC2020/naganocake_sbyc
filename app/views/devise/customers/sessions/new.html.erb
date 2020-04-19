@@ -1,28 +1,42 @@
-<h1>会員の方はこちらからログイン</h1>
-<h2>会員の方はこちらからログイン</h2>
+ <div class="container">
+<div class="row">
+  <div class="text-center"　data-gr-c-s-loaded="true"　>
+  <h4>会員の方はこちらからログイン</h4>
+</div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+ 
+    <%= f.label :メールアドレス, class: "col-xs-3 col-xs-offset-3" %>
+    <div class="form-group row">
+      <div class="col-xs-3">
+        <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", class: "form-control" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+ 
+    <%= f.label :パスワード, class: "col-xs-3 col-xs-offset-3" %>
+    <div class="form-group row">
+      <div class="col-xs-3">
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
   </div>
+</div>
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "＝＞パスワードを忘れた方はこちらから", new_password_path(resource_name), class: "col-xs-3 col-xs-offset-6" %><br />
 <% end %>
-<h3>登録がお済みで無い方はこちら</h3>
 
-<%= render "devise/customers/shared/links" %>
+<div class="actions">
+  <%= f.submit "ログイン", class: "btn btn-success col-xs-2 col-xs-offset-5" %>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-xs-3 col-xs-offset-3">
+    <h4>登録がお済みで無い方はこちら</h4>
+
+    <span><%= render "devise/customers/shared/links" %></span>
+  </div>
+</div>
+</div>
+
+
+
