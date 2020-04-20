@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
 
-
 	def index
 		@genres = Genre.where(is_active: true)
 		if params[:genre_id]
@@ -10,7 +9,6 @@ class ProductsController < ApplicationController
 			@products = Product.all
 		end
 	end
-
 
 	def show
 		@genres = Genre.where(is_active: true)
