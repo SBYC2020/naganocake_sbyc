@@ -1,4 +1,10 @@
 class OrdersController < ApplicationController
+	def index
+		@orders = current_customer.orders.all
+	end
+	def show
+		@order = Order.find(params[:id])
+	end
 
 	def new
 		@order = Order.new
