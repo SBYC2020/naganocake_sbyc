@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="col-xs-4 col-xs-offset-2">
-			<%= attachment_image_tag @product, :image, :fill, 300, 200 %>
+			<%= attachment_image_tag @product, :image, :fill, 300, 200, size: "300x250", fallback: "no_image.png" %>
 		</div>
 
 		<div class="col-xs-4">
