@@ -2,7 +2,7 @@
 	<h1>ジャンル編集画面</h1>
 	<br>
 
-<%= render "error", genre: @genre %>
+	<%= render "share/error_messages", object: @genre %>
 
 	<div class="row">
 			<%= form_for @genre, url: admin_genre_path(@genre.id) do |f|%>

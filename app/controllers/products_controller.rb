@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
 
-
 	def index
 		@genres = Genre.where(is_active: true)
 		if params[:genre_id]
@@ -9,14 +8,17 @@ class ProductsController < ApplicationController
 		else
 			@products = Product.all
 		end
+
 	end
 
 	def show
 		@products = Product.find(params[:id])
-	end
-	private
-	def products_params
-		params.require(:products).permit(:image_id, :product_name, :tax_included_price)
 
+	end
+
+	def show
+		@genres = Genre.where(is_active: true)
+		@product = Product.find(params[:id])
+		@cart = Cart.new
 	end
 end
