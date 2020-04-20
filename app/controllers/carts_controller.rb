@@ -8,7 +8,8 @@ class CartsController < ApplicationController
 	def create
 		cart = Cart.new(cart_params)
 		cart.customer_id = current_customer.id
-		if cart.save
+		if current_customer.carts.where(product_id: params[:cart][:product_id].to_i).empty?
+			cart.save
 			redirect_to carts_url
 		else
 			# 保存できなかった場合の記述を書く
