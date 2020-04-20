@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+before_action :authenticate_customer!
 	def new
 		@order = Order.new
 		@order.customer_id = current_customer.id
