@@ -34,7 +34,9 @@
 									<%= f.submit '変更', class: "btn btn-primary" %>
 								<% end %>
 							</td>
-							<td><%= cart.product.tax_included_price * cart.quantity %></td>
+							<td><% sum = cart.product.tax_included_price * cart.quantity %>
+								<%= sum.to_s(:delimited) %> 円
+							</td>
 							<td>
 								<%= link_to "削除する", cart_path(cart), method: :delete, class: "btn btn-danger" %>
 							</td>
@@ -53,7 +55,7 @@
 			<table class="table">
 				<tr>
 					<th>合計金額</th>
-					<td><%= @total %></td>
+					<td><%= @total.to_s(:delimited) %>円</td>
 				</tr>
 			</table>
 		</div>
