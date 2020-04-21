@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 		else
 			@products = Product.all
 		end
-
+	end
 
 	def show
 		@products = Product.find(params[:id])
