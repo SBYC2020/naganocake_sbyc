@@ -12,6 +12,13 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+		@products = Product.find(params[:id])
+
+
+
+	end
+
+	def show
 		@genres = Genre.where(is_active: true)
 		@product = Product.find(params[:id])
 		@cart = Cart.new
