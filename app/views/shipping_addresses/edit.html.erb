@@ -3,6 +3,7 @@
 <h3>配送先編集</h3>
 
 <%= form_for(@shipping_address) do |f| %>
+<%= render "layouts/errors", obj: @shipping_address %>
 
 
 <%= f.label :"郵便番号(ハイフンなし)", class: "col-xs-3" %>
