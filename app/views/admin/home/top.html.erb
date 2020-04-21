@@ -5,4 +5,6 @@
 
 <h3>本日の注文件数  <strong><%= @order.count %></strong>件</h3>
 
+<%= link_to 'ログアウトする', destroy_admin_session_path, method: :delete %>
+
 </div>

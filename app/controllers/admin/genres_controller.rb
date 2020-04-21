@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
-	before_action :authenticate_admin!
+	# before_action :authenticate_admin!
+
 	def index
 		@genres = Genre.all.page(params[:page]).per(10)
 		@genre = Genre.new
@@ -10,7 +11,8 @@ class Admin::GenresController < ApplicationController
 		if @genre.save
 		   redirect_to admin_genres_path
 		else
-		   redirect_back(fallback_location: root_path)
+		   @genres = Genre.page(params[:page])
+		   render 'index'
 		end
 	end
 
@@ -23,10 +25,9 @@ class Admin::GenresController < ApplicationController
 		if @genre.update(genre_params)
 			redirect_to admin_genres_path
 		else
-			render :edit
+			render 'edit'
 		end
 	end
-
 
 	private
 	def genre_params

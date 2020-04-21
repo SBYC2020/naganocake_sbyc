@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
-
-before_action :authenticate_customer!
+    # before_action :authenticate_customer!
 
 	def index
 		@orders = current_customer.orders.all
@@ -35,6 +34,8 @@ before_action :authenticate_customer!
 		end
 		if session[:payment_method].present? && session[:address].present? && session[:postal_code].present? && session[:name].present?
 			redirect_to order_confirm_url
+		else
+			#もう一度入力してくださいのflashメッセージ
 		end
 	end
 

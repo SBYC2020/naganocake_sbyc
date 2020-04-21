@@ -4,8 +4,11 @@
 			<h3>商品登録</h3>
 		</div>
 
-		<%= form_for(@product, url: admin_products_path) do |f| %>
+		<div class="col-xs-6 col-xs-offset-2">
+			<%= render 'layouts/errors', obj: @product %>
+		</div>
 
+		<%= form_for(@product, url: new_admin_product_path) do |f| %>
 			<div class="form-group col-xs-4 col-xs-offset-2">
 				<%= attachment_image_tag @product, :image, :fill, 300, 250, fallback: "no_image.png" %>
 				<%= f.attachment_field :image %>
@@ -37,7 +40,7 @@
 					<%= f.select :sale_status, [["販売中", true],["売り切れ中", false]] %>
 				</div>
 
-				<div class="action col-xs-1 col-xs-offset-10">
+				<div class="action col-xs-5 col-xs-offset-10">
 					<%= f.submit "新規登録", class: "btn btn-primary" %>
 				</div>
 			</div>
