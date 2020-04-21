@@ -1,0 +1,101 @@
+<div class="container">
+	<h1>注文詳細画面</h1>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<p>購入者</p>
+		</div>
+		<div class="col-xs-3">
+			<%= link_to admin_customer_path do %>
+			<%= @order.name %>
+			<% end %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<p>配送先</p>
+		</div>
+		<div class="col-xs-3">
+			<%= @order.address %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<p>支払方法</p>
+		</div>
+		<div class="col-xs-3">
+			<%= @order.payment_method %>
+		</div>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-3">
+			<p>注文ステータス</p>
+		</div>
+			<%= form_for(@order, url: admin_order_path) do |f| %>
+		<div class="col-xs-1">
+			<%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["制作中", "製作中"], ["発送準備中", "発送準備中"], ["発送済み", "発送済み"]] %>
+		</div>
+		<div class="col-xs-1">
+			<%= f.submit "更新", class: "btn btn-primary" %>
+		</div>
+			<% end %>
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-6">
+		<table class="table table-hove">
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価（税込）</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th>制作ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @orders_products.each do |order_product| %>
+				<tr>
+					<td><%= order_product.product.product_name %></td>
+					<td><%= order_product.price %></td>
+					<td><%= order_product.quantity %></td>
+					<td><%= order_product.price * order_product.quantity %></td>
+					<td>
+						<%= form_for(order_product, url: admin_product_item_path) do |f| %>
+						<%= hidden_field_tag :orders_product_id, "#{order_product.id}"  %>
+						<%= f.select :production_status, [["着手不可", "着手不可"], ["製作待ち", "製作待ち"], ["製作中", "製作中"], ["製作完了", "製作完了"]] %>
+						<%= f.submit "更新", class: "btn btn-primary" %>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		</div>
+		<div class="col-xs-2">
+		<dl class="dl-horizontal">
+			<dt>商品合計</dt>
+				<dd><%= @order.total_payment - 800 %></dd>
+				<br>
+			<dt>送料</dt>
+				<dd><%= 800 %></dd>
+				<br>
+			<dt>請求金額合計</dt>
+				<dd><%= @order.total_payment %></dd>
+		</dl>
+		</div>
+	</div>
+</div>
+
+
+
+
+

@@ -1,5 +1,5 @@
 class ShippingAddressesController < ApplicationController
-	# before_action :authenticate_customer!
+	before_action :authenticate_customer!
 
 	def index
 		@shipping_address = ShippingAddress.new

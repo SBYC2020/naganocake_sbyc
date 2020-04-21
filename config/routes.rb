@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
 
 
-
 # 管理者側のルーティング
   devise_for :admins, controllers: {
   	sessions:      'devise/admins/sessions',
@@ -30,7 +29,7 @@ Rails.application.routes.draw do
   namespace :admin do
   	resources :customers, only: [:index, :show, :edit, :update]
   	resources :genres, only: [:index, :edit, :create, :update]
-  	get '/home', to: 'home#top'
+  	root to: 'home#top'
   	resources :orders, only: [:index, :show, :update]
   	resources :products, only: [:index, :new, :show, :edit, :create, :update]
   	resources :product_items, only: [:update]

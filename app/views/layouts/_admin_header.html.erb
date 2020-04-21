@@ -10,12 +10,13 @@
               <li><%= link_to '会員一覧', admin_customers_path %></li>
               <li><%= link_to '注文履歴一覧', admin_orders_path %></li>
               <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
         <div class="row">
               <td><form class="navbar-form navbar-right" role="search">
               <div class="form-group">
               <input type="text" class="form-control" placeholder="Search">
               </div>
-              <button type="submit"  class="glyphicon glyphicon-search"></button>
+              <button type="submit" class=" form-control glyphicon glyphicon-search"></button>
               </form></td>
             <% end %>
         </div>
