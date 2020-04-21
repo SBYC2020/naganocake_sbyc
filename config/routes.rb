@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
 
 
+
+
 # 管理者側のルーティング
   devise_for :admins, controllers: {
   	sessions:      'devise/admins/sessions',
@@ -32,5 +34,7 @@ Rails.application.routes.draw do
   	resources :orders, only: [:index, :show, :update]
   	resources :products, only: [:index, :new, :show, :edit, :create, :update]
   	resources :product_items, only: [:update]
+
+    post 'products/new', to: 'products#create'
   end
 end

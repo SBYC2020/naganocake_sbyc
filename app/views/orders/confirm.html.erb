@@ -2,12 +2,12 @@
 	<div class="row">
 		<h3 class="col-xs-offset-1">注文情報確認</h3>
 	</div>
-
-	<table class="table">
+	<div class="col-xs-9">
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th>商品名</th>
-				<th>税込価格</th>
+				<th>単価(税込)</th>
 				<th>数量</th>
 				<th>小計</th>
 			</tr>
@@ -19,29 +19,42 @@
 						<%= attachment_image_tag cart.product, :image,:fill, 90, 60 %>
 						<%= cart.product.product_name %>
 					</td>
-					<td><%= cart.product.tax_included_price %></td>
-					<td><%= cart.quantity %></td>
-					<td><%= cart.product.tax_included_price * cart.quantity %></td>
+					<td><%= cart.product.tax_included_price.to_s(:delimited) %></td>
+					<td><%= cart.quantity.to_s(:delimited) %></td>
+					<td><% sum = cart.product.tax_included_price * cart.quantity %>
+						<%= sum.to_s(:delimited) %>
+					</td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
+	</div>
+	<div class="col-xs-3">
+	<table class="table table-bordered ">
 
-	<table class="table">
+		<tbody>
 		<tr>
 			<th>送料</th><td><%= 800 %></td>
-			<th>商品合計</th><td><%= @total %></td>
-			<th>請求金額</th><td><%= @claim %></td>
 		</tr>
+		<tr>
+			<th>商品合計</th><td><%= @total.to_s(:delimited) %></td>
+		</tr>
+		<tr>
+			<th>請求金額</th><td><%= @claim.to_s(:delimited) %></td>
+		</tr>
+		</tbody>
 	</table>
+	</div>
 
+	<div class="col-xs-9">
 	<h4>支払い方法</h4>
 	<p><%= session[:payment_method] %></p>
 
 	<h4>お届け先</h4>
 	<p><%= session[:postal_code] %><%= session[:address] %></p>
 	<p><%= session[:name] %></p>
+	</div>
 </div>
 
-<%= link_to '購入確定', order_finish_path %>
+<%= link_to '購入確定', order_finish_path,class: "btn btn-primary col-xs-2 col-xs-offset-6" %>
 

@@ -1,6 +1,10 @@
 <div class="container">
 
-<h3>管理者画面</h3>
+<h1>管理者画面</h1>
 
 
-<h4>本日の注文件数　　　件</h4>
+<h3>本日の注文件数  <strong><%= @order.count %></strong>件</h3>
+
+<%= link_to 'ログアウトする', destroy_admin_session_path, method: :delete %>
+
+</div>

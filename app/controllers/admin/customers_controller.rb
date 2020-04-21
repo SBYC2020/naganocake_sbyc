@@ -1,6 +1,5 @@
 class Admin::CustomersController < ApplicationController
 
-
 	def index
 		@customers = Customer.all.page(params[:page]).per(10)
 	end
@@ -12,7 +11,6 @@ class Admin::CustomersController < ApplicationController
 	def edit
 		@customer = Customer.find(params[:id])
 	end
-
 
 	def update
 		@customer = Customer.find(params[:id])
@@ -27,6 +25,5 @@ class Admin::CustomersController < ApplicationController
 	def customer_params
 		params.require(:customer).permit(:surname, :name, :kana_surname, :kana_name, :postal_code, :address, :phone_number, :email, :account_status)
 	end
-
 
 end

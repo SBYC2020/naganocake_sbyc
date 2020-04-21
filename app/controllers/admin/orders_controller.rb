@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
 
+
 	def index
 		@orders = Order.all.page(params[:page]).per(10)
 	end
@@ -25,5 +26,8 @@ class Admin::OrdersController < ApplicationController
 	def order_params
 		params.require(:order).permit(:name, :address, :payment_method, :order_status, :created_at, :quantity, :product_id, :price, :production_status, :total_payment)
 	end
+
+
+	# before_action :authenticate_admin!
 
 end

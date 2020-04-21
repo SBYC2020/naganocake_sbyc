@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-
+# before_action :authenticate_admin!
 	def new
 		@product = Product.new
 		@genres = Genre.all
@@ -16,7 +16,7 @@ class Admin::ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		@genres = Genre.all
-		if @product.save!
+		if @product.save
 		   redirect_to admin_product_url(@product)
 		else
 			render 'new'
@@ -30,6 +30,7 @@ class Admin::ProductsController < ApplicationController
 
 	def update
 		@product = Product.find(params[:id])
+		@genres = Genre.all
 		if @product.update(product_params)
 		   redirect_to admin_product_url(@product)
 		else

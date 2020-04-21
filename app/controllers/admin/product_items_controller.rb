@@ -1,4 +1,5 @@
 class Admin::ProductItemsController < ApplicationController
+
 	def update
 		# orders_products = OrdersProduct.find_by(id: params[:orders_product][:orders_product_id].to_i)
 		orders_products = OrdersProduct.find(params[:orders_product_id])
@@ -21,5 +22,8 @@ class Admin::ProductItemsController < ApplicationController
 	def orders_product_params
 		params.require(:orders_product).permit(:production_status, :order_status, :orders_product_id)
 	end
+
+
+	# before_action :authenticate_admin!
 
 end
