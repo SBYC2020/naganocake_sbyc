@@ -1,12 +1,12 @@
 class CustomersController < ApplicationController
-	# before_action :authenticate_customer!
+	before_action :authenticate_customer!
 
 	def edit
-	   @customer = current_customer
+	   @customer = Customer.find(current_customer.id)
 	end
 
 	def update
-		@customer = current_customer
+		@customer = Customer.find(current_customer.id)
         if @customer.update(customer_params)
            redirect_to root_path
         else
