@@ -6,7 +6,10 @@
     <div class="collapse navbar-collapse">
      <ul class="nav navbar-nav navbar-right" style="font-size: 20px; color: #ffffff;">
         <% if customer_signed_in? %>
+
+
           <li>ようこそ<%= current_customer.surname %><%= current_customer.name %>さん！</li>
+
 
           <li><%= link_to 'マイページ', customer_path %></li>
           <li><%= link_to '商品一覧', products_path %></li>
