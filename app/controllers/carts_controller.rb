@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-before_action :authenticate_customer!
+# before_action :authenticate_customer!
 	def index
 		@carts = Cart.where(customer_id: current_customer.id)
 		@total = total(current_customer)
@@ -12,14 +12,20 @@ before_action :authenticate_customer!
 			cart.save
 			redirect_to carts_url
 		else
-			# 保存できなかった場合の記述を書く
+			# 保存できなかった場合を書く
 		end
 	end
 
 	def update
 		cart = Cart.find(params[:id])
-		cart.update(cart_params)
-		redirect_to carts_url
+		if cart.update(cart_params)
+			redirect_to carts_url
+		else
+		@carts = Cart.where(customer_id: current_customer.id)
+		@total = total(current_customer)
+		p cart.errors.full_messages
+			render 'index'
+		end
 	end
 
 	def destroy
