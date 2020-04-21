@@ -1,5 +1,6 @@
 class Admin::ProductItemsController < ApplicationController
 
+
 	def update
 		# orders_products = OrdersProduct.find_by(id: params[:orders_product][:orders_product_id].to_i)
 		orders_products = OrdersProduct.find(params[:orders_product_id])

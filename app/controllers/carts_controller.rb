@@ -1,18 +1,18 @@
 class CartsController < ApplicationController
-# before_action :authenticate_customer!
+before_action :authenticate_customer!
 	def index
 		@carts = Cart.where(customer_id: current_customer.id)
 		@total = total(current_customer)
 	end
 
 	def create
-		cart = Cart.new(cart_params)
-		cart.customer_id = current_customer.id
+		@cart = Cart.new(cart_params)
+		@cart.customer_id = current_customer.id
 		if current_customer.carts.where(product_id: params[:cart][:product_id].to_i).empty?
-			cart.save
+			@cart.save
 			redirect_to carts_url
 		else
-			# 保存できなかった場合を書く
+			redirect_to product_path(@cart.product.id), flash: { alert: '既にカートに入っています！' }
 		end
 	end
 
