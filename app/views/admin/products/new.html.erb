@@ -16,27 +16,27 @@
 
 			<div class="col-xs-4">
 				<div class="form-group">
-					<%= f.label :商品名 %>
+					<%= f.label :product_name, '商品名' %>
 					<%= f.text_field :product_name, class: "form-control" %>
 				</div>
 
 				<div class="form-group">
-					<%= f.label :商品説明 %>
+					<%= f.label :product_description, '商品説明' %>
 					<%= f.text_area :product_description, size: "40x7", class: "form-control" %>
 				</div>
 
 				<div class="form-group">
-					<%= f.label :ジャンル %>
+					<%= f.label :genre_id, 'ジャンル' %>
 					<%= f.collection_select :genre_id, @genres, :id, :name %>
 				</div>
 
 				<div class="form-group">
-					<%= f.label :価格 %>
+					<%= f.label :tax_included_price, '価格' %>
 					<%= f.number_field :tax_included_price %>円
 				</div>
 
 				<div class="form-group">
-					<%= f.label :販売ステータス %>
+					<%= f.label :sale_status, '販売ステータス' %>
 					<%= f.select :sale_status, [["販売中", true],["売り切れ中", false]] %>
 				</div>
 

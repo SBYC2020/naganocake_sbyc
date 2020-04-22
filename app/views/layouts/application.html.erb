@@ -10,22 +10,22 @@
   </head>
 
   <body>
-    <% if request.url.include? "admin" %>
-      <%= render 'layouts/admin_header' %>
-      <% else %>
-      <%= render "layouts/customer_header" %>
-      <div class="container">
-        <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>
-      </div>
-    <% end %>
+      <% if request.url.include? "admin" %>
+        <%= render 'layouts/admin_header' %>
+        <% else %>
+        <%= render "layouts/customer_header" %>
+        <div class="container">
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <% end %>
+        </div>
+      <% end %>
 
-    <%= yield %>
-
-    <% unless request.url.include? "admin" %>
+      <%= yield %>
+      <% if request.url.include? "admin" %>
       <%= render 'layouts/customer_footer' %>
-    <% end %>
+      <% end %>
+
 
   </body>
 </html>
