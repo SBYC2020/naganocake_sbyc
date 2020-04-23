@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
 
   root 'home#top'
+  get '/', to: 'home#top'
   resources :carts, only: [:index, :create, :destroy, :update]
   delete 'cart/empty', to: 'carts#empty_cart'
   resources :shipping_addresses, only: [:index, :edit, :create, :update, :destroy]
@@ -16,7 +17,6 @@ Rails.application.routes.draw do
 
   resource :customer, only: [:show, :edit, :update]
   get 'customers/confirm', to: 'customers#confirm'
-
 
 
 
