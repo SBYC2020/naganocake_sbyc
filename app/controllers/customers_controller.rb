@@ -20,3 +20,4 @@ class CustomersController < ApplicationController
 		params.require(:customer).permit(:surname, :name, :kana_surname, :kana_name, :email, :postal_code, :address, :phone_number)
 	end
 end
+
