@@ -14,9 +14,12 @@ class Devise::Customers::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    customer = current_customer
+    customer.account_status = false
+    customer.save
+    super
+  end
 
   # protected
 

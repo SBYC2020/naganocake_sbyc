@@ -8,12 +8,14 @@ class CustomersController < ApplicationController
 	def update
 		@customer = Customer.find(current_customer.id)
         if @customer.update(customer_params)
-           redirect_to root_path
+           redirect_to customer_path
         else
             render :edit
         end
 	end
 
+	def confirm
+	end
 
 	private
 	def customer_params
