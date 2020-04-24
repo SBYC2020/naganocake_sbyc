@@ -58,6 +58,12 @@ class OrdersController < ApplicationController
 		@order.payment_method = session[:payment_method]
 		@order.total_payment = @order.postage + total(current_customer)
 		@order.save
+		shipping_address = ShippingAddress.new
+		shipping_address.customer_id = current_customer.id
+		shipping_address.postal_code = session[:postal_code]
+		shipping_address.address_name = session[:name]
+		shipping_address.address = session[:address]
+		shipping_address.save
 
 		#orders_productsテーブルへの保存
 		current_customer.carts.each do |cart|
@@ -69,6 +75,7 @@ class OrdersController < ApplicationController
 			@orders_product.production_status = 0
 			@orders_product.save!
 		end
+		# ここでsessionを全て消す！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 	end
 
 

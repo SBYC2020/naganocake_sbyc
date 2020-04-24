@@ -50,8 +50,6 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 			expect(current_path).to eq(customer_path)
 			expect(page).to have_content '有田'
 			expect(page).to have_content '哲平'
-			expect(page).to have_content 'アリタ'
-			expect(page).to have_content 'テッペイ'
 			expect(page).to have_content 'arita@example.com'
 			expect(page).to have_content '9999999'
 			expect(page).to have_content '東京都港区'
@@ -79,8 +77,9 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 		end
 		it '配送先画面のヘッダーからトップ画面へ遷移する' do
 			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
-			top_link = find_all('a')[0].native.inner_text
-			click_link top_link
+			# top_link = find_all('a')[0].native.inner_text
+			# click_link top_link
+			click_on 'NAGANO CAKE'
 			expect(current_path).to eq(root_path)
 		end
 	end
@@ -143,8 +142,7 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 		it 'サンクスページのヘッダーからトップ画面へ遷移する' do
 			click_on '購入確定'
 			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
-			top_link = find_all('a')[0].native.inner_text
-			click_link top_link
+			click_on 'NAGANO CAKE'
 			expect(current_path).to eq(root_path)
 		end
 	end
@@ -223,7 +221,7 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 		it '先ほど購入時に入力した住所が表示されている' do
 			click_on '購入確定'
 			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
-			mypage_link = find_all('a')[0].native.inner_text
+			mypage_link = find_all('a')[1].native.inner_text
 			click_link mypage_link
 			click_link '一覧を見る', href: '/shipping_addresses'
 			# 注文情報入力で新たに住所を入力した場合、それも配送先住所として登録されるようにしないとテスト通らない！！！！
@@ -232,12 +230,13 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 			expect(page).to have_content '福田和子'
 		end
 	end
+	# ここまでは修正済み！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 	  	context '会員情報編集画面が表示される' do
 	  		it '会員情報編集画面に遷移する' do
 	  		#マイページへアクセスする
 	  		visit customer_path
 	  		#ページ内にあるHTML要素('a')の３番目の編集するボタンを探す
-	  		edit_customer_link = find_all('a')[4].native.inner_text
+	  		edit_customer_link = find_all('a')[5].native.inner_text
 	  		#上記で探した"編集する"リンクを押す
 	  		click_link edit_customer_link
 	  		#今現在のパスはイコール下記のURLと同じ

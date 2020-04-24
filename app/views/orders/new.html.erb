@@ -41,28 +41,22 @@
 				<div class="radio_inline">
 					<%= radio_button_tag(:address_info, "new_address_info") %>
 					<%= label_tag(:address_info, "新しいお届け先") %><br>
-					<div class="row">
-						<div class="col-xs-3">
-							<%= f.label :"郵便番号(ハイフンなし)" %>
-						</div>
-						<div class="col-xs-3">
-							<%= f.text_field :postal_code, placeholder: "1234567", class: "form-control" %>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-3">
-							<%= f.label :住所 %>
-						</div>
+					<div class="row form-group">
 						<div class="col-xs-6">
-							<%= f.text_field :address, placeholder: "東京都＊＊区", class: "form-control" %>
+							<%= f.label :postal_code, "郵便番号(ハイフンなし)", class: 'col-xs-3' %>
+							<%= f.text_field :postal_code, placeholder: "1234567", class: "form-control col-xs-3" %>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-xs-3">
-							<%= f.label :宛名 %>
+					<div class="row form-group">
+						<div class="col-xs-9">
+							<%= f.label :address, '住所', class: 'col-xs-3' %>
+							<%= f.text_field :address, placeholder: "東京都＊＊区", class: "form-control col-xs-6" %>
 						</div>
-						<div class="col-xs-3">
-							<%= f.text_field :name, placeholder: "相田周二", class: "form-control" %>
+					</div>
+					<div class="row form-group">
+						<div class="col-xs-6">
+							<%= f.label :name, '宛名', class: 'col-xs-3' %>
+							<%= f.text_field :name, placeholder: "相田周二", class: "form-control col-xs-3" %>
 						</div>
 					</div>
 				</div>

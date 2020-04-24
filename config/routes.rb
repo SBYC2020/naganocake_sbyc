@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'order/finish', to: 'orders#finish'
   resources :products, only: [:show, :index]
 
-  resource :customer, only: [:show, :edit, :update]
+  resource :customer, only: [:show, :edit, :update, :destroy]
   get 'customers/confirm', to: 'customers#confirm'
 
 
