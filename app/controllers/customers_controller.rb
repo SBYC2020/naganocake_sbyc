@@ -17,6 +17,16 @@ class CustomersController < ApplicationController
 	def confirm
 	end
 
+    def hide
+        @customer = Customer.find(current_customer.id)
+        #is_deletedカラムにフラグを立てる(defaultはfalse)
+        @customer.update(account_status: false)
+        #ログアウトさせる
+        reset_session
+        flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+        redirect_to root_path
+    end
+
 	private
 	def customer_params
 		params.require(:customer).permit(:surname, :name, :kana_surname, :kana_name, :email, :postal_code, :address, :phone_number)

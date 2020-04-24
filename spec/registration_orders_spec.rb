@@ -4,7 +4,7 @@ RSpec.describe '会員側のテスト', type: :feature do
 	describe '新規登録のテスト' do
 		it '新規登録画面が表示される' do
 			visit root_path
-			signup_link = find_all('a')[1].native.inner_text
+			signup_link = find_all('a')[2].native.inner_text
 			click_link signup_link
 			expect(current_path).to eq(new_customer_registration_path)
 		end

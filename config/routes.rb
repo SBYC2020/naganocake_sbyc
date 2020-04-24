@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resource :customer, only: [:show, :edit, :update, :destroy]
   get 'customers/confirm', to: 'customers#confirm'
-
+  put 'customers/hide', to: 'customers#hide'
 
 
 # 管理者側のルーティング

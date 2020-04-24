@@ -25,7 +25,7 @@ RSpec.describe "管理画面のテスト", type: :feature do
 	context "ヘッダから注文履歴一覧へのリンクを押下する" do
 		it "注文履歴一覧が表示される" do
 			visit admin_root_path
-			orders_link = find_all("a")[2].native.inner_text
+			orders_link = find_all("a")[3].native.inner_text
 			click_link orders_link
 
 			expect(current_path).to eq (admin_orders_path)
@@ -81,7 +81,7 @@ RSpec.describe "管理画面のテスト", type: :feature do
 
 	context "ヘッダからログアウトボタンを押下する" do
 		it "ログイン画面に遷移する" do
-			loguot_link = find_all("a")[4].native.inner_text
+			loguot_link = find_all("a")[5].native.inner_text
 			click_link loguot_link
 
 			expect(current_path).to eq (new_admin_session_path)
@@ -89,7 +89,7 @@ RSpec.describe "管理画面のテスト", type: :feature do
 	end
 end
 
-RSpec.describe "ECサイト", type: :feature do
+RSpec.describe "ECサイトのテスト", type: :feature do
 
 	let!(:admin) { Admin.create(email: "admin@example.com", password: "adminadmin") }
 	let!(:customer) { Customer.create(email: "kasuga@example.com", password: "kasugakasuga", surname: "春日", name: "俊彰", kana_surname: "カスガ", kana_name: "トシアキ", postal_code: "1234567", address: "埼玉県所沢市", phone_number: "1234567890", account_status: true) }
@@ -111,20 +111,20 @@ RSpec.describe "ECサイト", type: :feature do
  		end
 
  		it "ヘッダがログイン後の表示に変わっている" do
- 			header_link = find_all("a")[0].native.inner_text
- 			expect(header_link).to match(/マイページ/i)
  			header_link = find_all("a")[1].native.inner_text
- 			expect(header_link).to match(/商品一覧/i)
+ 			expect(header_link).to match(/マイページ/i)
  			header_link = find_all("a")[2].native.inner_text
- 			expect(header_link).to match(/カート/i)
+ 			expect(header_link).to match(/商品一覧/i)
  			header_link = find_all("a")[3].native.inner_text
+ 			expect(header_link).to match(/カート/i)
+ 			header_link = find_all("a")[4].native.inner_text
  			expect(header_link).to match(/ログアウト/i)
  		end
  	end
 
  	context "ヘッダからマイページに遷移する" do
  		it "マイページが表示される" do
- 			mypage_link = find_all("a")[0].native.inner_text
+ 			mypage_link = find_all("a")[1].native.inner_text
  			click_on mypage_link
 
  			expect(current_path).to eq (customer_path)
