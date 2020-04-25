@@ -89,7 +89,7 @@ RSpec.describe "管理画面のテスト", type: :feature do
 	end
 end
 
-RSpec.describe "ECサイト", type: :feature do
+RSpec.describe "ECサイトのテスト", type: :feature do
 
 	let!(:admin) { Admin.create(email: "admin@example.com", password: "adminadmin") }
 	let!(:customer) { Customer.create(email: "kasuga@example.com", password: "kasugakasuga", surname: "春日", name: "俊彰", kana_surname: "カスガ", kana_name: "トシアキ", postal_code: "1234567", address: "埼玉県所沢市", phone_number: "1234567890", account_status: true) }

@@ -16,7 +16,7 @@ RSpec.describe '管理者画面のテスト', type: :feature do
 	end
 
 	it 'ジャンル一覧画面が表示される' do
-		genre_link = find_all('a')[3].native.inner_text
+		genre_link = find_all('a')[4].native.inner_text
 		click_link genre_link
 		expect(page).to have_content 'ジャンル追加・一覧画面'
 	end
@@ -30,14 +30,14 @@ RSpec.describe '管理者画面のテスト', type: :feature do
 	end
 
 	it '商品一覧画面が表示される' do
-		product_index_link = find_all('a')[0].native.inner_text
+		product_index_link = find_all('a')[1].native.inner_text
 		click_link product_index_link
 		expect(page).to have_content '商品一覧'
 	end
 
 	it '商品新規登録画面が表示される' do
 		visit admin_products_path
-		new_product_link = find_all('a')[5].native.inner_text
+		new_product_link = find_all('a')[6].native.inner_text
 		click_link new_product_link
 		expect(page).to have_content '商品登録'
 	end
@@ -56,7 +56,7 @@ RSpec.describe '管理者画面のテスト', type: :feature do
 
 	it '商品新規登録画面が表示される(2品目)' do
 		visit admin_products_path
-		new_product_link = find_all('a')[5].native.inner_text
+		new_product_link = find_all('a')[6].native.inner_text
 		click_link new_product_link
 		expect(page).to have_content '商品登録'
 	end
@@ -74,7 +74,7 @@ RSpec.describe '管理者画面のテスト', type: :feature do
 	end
 
 	it 'ログアウトリンクを押すとログイン画面に遷移する' do
-		logout_link = find_all('a')[4].native.inner_text
+		logout_link = find_all('a')[5].native.inner_text
 		click_link logout_link
 		expect(current_path).to eq(new_admin_session_path)
 	end

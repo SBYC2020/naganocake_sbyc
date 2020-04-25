@@ -76,9 +76,6 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 			expect(page).to have_content '上田晋也'
 		end
 		it '配送先画面のヘッダーからトップ画面へ遷移する' do
-			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
-			# top_link = find_all('a')[0].native.inner_text
-			# click_link top_link
 			click_on 'NAGANO CAKE'
 			expect(current_path).to eq(root_path)
 		end
@@ -141,7 +138,6 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 		end
 		it 'サンクスページのヘッダーからトップ画面へ遷移する' do
 			click_on '購入確定'
-			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
 			click_on 'NAGANO CAKE'
 			expect(current_path).to eq(root_path)
 		end
@@ -205,14 +201,12 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 		end
 		it 'サンクスページのヘッダーからマイページへ遷移する' do
 			click_on '購入確定'
-			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
 			mypage_link = find_all('a')[1].native.inner_text
 			click_link mypage_link
 			expect(current_path).to eq(customer_path)
 		end
 		it 'マイページから住所一覧画面へ遷移する' do
 			click_on '購入確定'
-			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
 			mypage_link = find_all('a')[1].native.inner_text
 			click_link mypage_link
 			click_link '一覧を見る', href: '/shipping_addresses'
@@ -220,11 +214,9 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 		end
 		it '先ほど購入時に入力した住所が表示されている' do
 			click_on '購入確定'
-			# ロゴにトップページへのリンクがないからエラーが起きる！！！！！！！！！！
 			mypage_link = find_all('a')[1].native.inner_text
 			click_link mypage_link
 			click_link '一覧を見る', href: '/shipping_addresses'
-			# 注文情報入力で新たに住所を入力した場合、それも配送先住所として登録されるようにしないとテスト通らない！！！！
 			expect(page).to have_content '2222222'
 			expect(page).to have_content '北海道札幌市'
 			expect(page).to have_content '福田和子'
@@ -235,39 +227,57 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 	  		it '会員情報編集画面に遷移する' do
 	  		#マイページへアクセスする
 	  		visit customer_path
-	  		#ページ内にあるHTML要素('a')の３番目の編集するボタンを探す
+	  		#ページ内にあるHTML要素('a')の6番目の編集するボタンを探す
 	  		edit_customer_link = find_all('a')[5].native.inner_text
 	  		#上記で探した"編集する"リンクを押す
 	  		click_link edit_customer_link
 	  		#今現在のパスはイコール下記のURLと同じ
 	  		expect(current_path).to eq('/customer/edit')
 	  		end
-	  		it 'アラートが表示される' do
+	  		it 'アラートが表示される', js: true do
 	  		visit edit_customer_path
-	  		click_link '退会する' , href: '/customers/confirm'
-	  		expect(current_path).to eq('/customers/confirm')
-	  		end
-	  		it 'トップ画面に遷移する' do
-	  		visit customers_confirm_path
+	  		# 会員情報編集画面で「退会するを押す」
 	  		click_on '退会する'
-	  		expect(current_path).to eq('customers/sign_in')
+	  		# 退会確認画面で「退会するを押す」
+	  		click_on '退会する'
+	  		# 　　　　　　　↑この退会するを押したらalertで「本当に退会しますか？」ってでるはず
+	  		# gemを入れてないからなのかrspecでalertが認識できない！！！！！！！！！！！！！！！！！！！！！！！！！！
+	  		expect(page.driver.switch_to.alert.text).to eq("本当に退会しますか？")
+	  		page.accept_confirm
+	  		# expect(current_path).to eq(root_path)
+	  		end
+	  		it '「はい」を押すとトップ画面に遷移する' do
+	  		visit edit_customer_path
+	  		click_on '退会する'
+	  		click_on '退会する'
+	  		# gem入れたら下の行はアンコメントアウト
+	  		# page.driver.browser.alert.accept
+	  		expect(current_path).to eq(root_path)
 	  		end
 	  		it 'ヘッダが未ログイン状態になっている' do
-	  		visit root_path
+	  		visit edit_customer_path
+	  		click_on '退会する'
+	  		click_on '退会する'
+	  		# gem入れたら下の行はアンコメントアウト
+	  		# page.driver.browser.alert.accept
 	  		expect(page).to have_link 'ログイン', href: '/customers/sign_in'
 	  		end
-	  		it 'ログイン画面に遷移する' do
-	  		visit root_path
+	  		it 'ヘッダからログイン画面に遷移する' do
+	  		visit edit_customer_path
+	  		click_on '退会する'
+	  		click_on '退会する'
 	  		click_on 'ログイン'
-	  		expect(current_path).to eq('customers/sign_in')
+	  		expect(current_path).to eq('/customers/sign_in')
 	  		end
 	  		it'ログインが不可' do
-	  		click_on 'ログアウト'
-	  		click_link 'ログイン', href: '/customers/sign_in'
-	  		fill_in 'customer[email]', with: "kasuga@example.com"
-	  		fill_in 'customer[password]', with: "kasugakasuga"
+	  		visit edit_customer_path
+	  		click_on '退会する'
+	  		click_on '退会する'
+	  		click_on 'ログイン'
+	  		fill_in 'customer[email]', with: 'kasuga@example.com'
+	  		fill_in 'customer[password]', with: 'kasugakasuga'
 	  		click_button 'ログイン'
-	  		expect(page).to have_link 'ログアウト', href: '/customers/sign_out'
+	  		expect(page).to have_link 'ログイン', href: '/customers/sign_in'
 	  		end
 
 	  	end
@@ -306,13 +316,13 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 		expect(page).to have_content '本日の注文件数'
 	end
 	it '会員一覧画面が表示される' do
-		customer_index_link = find_all('a')[1].native.inner_text
+		customer_index_link = find_all('a')[2].native.inner_text
 		click_link customer_index_link
 		expect(current_path).to eq(admin_customers_path)
 	end
 	it '先ほど退会したユーザが「退会済」になっている' do
 		visit admin_customers_path
-		expect(customer1.account_status).to eq false
+		expect(customer1.reload.account_status).to eq false
 	end
 	it '会員情報詳細画面に遷移する' do
 		visit admin_customers_path
@@ -322,26 +332,10 @@ RSpec.describe '登録情報変更のテスト', type: :feature do
 	it '変更した住所が表示されている' do
 		visit admin_customers_path
 		click_link '春日 俊彰', href: '/admin/customers/1'
-		expect(page).to have_content("明日花キララ")
+		expect(customer1.reload.address).to eq("明日花キララ")
 	end
 	it 'ログイン画面が表示される' do
 		click_on 'ログアウト'
 		expect(current_path).to eq(new_admin_session_path)
 	end
-
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

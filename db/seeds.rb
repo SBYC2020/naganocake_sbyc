@@ -13,7 +13,6 @@ Customer.create(
 	postal_code: "1234567",
 	address: "埼玉県所沢市",
 	phone_number: "1234567890",
-	account_status: true
 	)
 
 Customer.create(
@@ -26,7 +25,6 @@ Customer.create(
 	postal_code: "1234567",
 	address: "東京都渋谷区笹塚",
 	phone_number: "1234567890",
-	account_status: true
 	)
 
 Genre.create([
