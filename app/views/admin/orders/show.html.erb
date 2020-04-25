@@ -61,6 +61,7 @@
 					<th>制作ステータス</th>
 				</tr>
 			</thead>
+
 			<tbody>
 				<% @orders_products.each do |order_product| %>
 				<tr>
@@ -77,19 +78,21 @@
 					</td>
 				</tr>
 				<% end %>
+				<%= paginate @orders_products %>
 			</tbody>
 		</table>
 		</div>
+
 		<div class="col-xs-2">
 		<dl class="dl-horizontal">
-			<dt>商品合計</dt>
-				<dd><%= @order.total_payment - 800 %></dd>
+			<dt><h3>商品合計</h3></dt>
+				<dd><h3><%= @order.total_payment - 800 %></h3></dd>
 				<br>
-			<dt>送料</dt>
-				<dd><%= 800 %></dd>
+			<dt><h3>送料</h3></dt>
+				<dd><h3><%= 800 %></h3></dd>
 				<br>
-			<dt>請求金額合計</dt>
-				<dd><%= @order.total_payment %></dd>
+			<dt><h3>請求金額合計</h3></dt>
+				<dd><h3><%= @order.total_payment %></h3></dd>
 		</dl>
 		</div>
 	</div>
