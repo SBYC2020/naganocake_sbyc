@@ -22,7 +22,7 @@
       <% end %>
 
       <%= yield %>
-      <% if request.url.include? "admin" %>
+      <% unless request.url.include? "admin" %>
       <%= render 'layouts/customer_footer' %>
       <% end %>
 
