@@ -6,7 +6,7 @@ class Admin::OrdersController < ApplicationController
 
 	def show
 		@order = Order.find(params[:id])
-		@orders_products = OrdersProduct.all
+		@orders_products = OrdersProduct.all.page(params[:page]).per(4)
 	end
 
 	def update
