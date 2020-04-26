@@ -24,7 +24,7 @@
 				<h4>お届け先</h4>
 			</div>
 			<div class="col-xs-offset-2">
-				<div class="radio-inline">
+				<div class="radio-inline", style="padding-top: 20px;">
 					<%= radio_button_tag(:address_info, "self_address_info", checked: "checked") %>
 					<%= label_tag(:address_info, "ご自身の住所") %><br>
 					<span>〒<%= current_customer.postal_code %><%= current_customer.address %><br>
@@ -32,30 +32,30 @@
 					</span>
 				</div><br>
 
-				<div class="radio-inline">
+				<div class="radio-inline", style="padding-top: 20px;">
 					<%= radio_button_tag(:address_info, "shipping_address_info") %>
 					<%= label_tag(:address_info, "登録先住所から選択") %><br>
 					<%= select_tag :address, options_from_collection_for_select(@shipping_addresses, :address_info, :address_info ) %>
 				</div>
 
-				<div class="radio_inline">
+				<div class="radio_inline", style="padding-top: 20px;">
 					<%= radio_button_tag(:address_info, "new_address_info") %>
 					<%= label_tag(:address_info, "新しいお届け先") %><br>
 					<div class="row form-group">
-						<div class="col-xs-6">
-							<%= f.label :postal_code, "郵便番号(ハイフンなし)", class: 'col-xs-3' %>
+						<div class="col-xs-3">
+							<%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
 							<%= f.text_field :postal_code, placeholder: "1234567", class: "form-control col-xs-3" %>
 						</div>
 					</div>
 					<div class="row form-group">
-						<div class="col-xs-9">
-							<%= f.label :address, '住所', class: 'col-xs-3' %>
+						<div class="col-xs-6">
+							<%= f.label :address, '住所' %>
 							<%= f.text_field :address, placeholder: "東京都＊＊区", class: "form-control col-xs-6" %>
 						</div>
 					</div>
 					<div class="row form-group">
-						<div class="col-xs-6">
-							<%= f.label :name, '宛名', class: 'col-xs-3' %>
+						<div class="col-xs-3">
+							<%= f.label :name, '宛名' %>
 							<%= f.text_field :name, placeholder: "相田周二", class: "form-control col-xs-3" %>
 						</div>
 					</div>
