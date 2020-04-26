@@ -27,6 +27,4 @@ before_action :authenticate_admin!
 		params.require(:order).permit(:customer_id, :name, :address, :payment_method, :order_status, :created_at, :quantity, :product_id, :price, :production_status, :total_payment)
 	end
 
-
-
 end
