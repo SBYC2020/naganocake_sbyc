@@ -75,7 +75,9 @@ class OrdersController < ApplicationController
 			@orders_product.production_status = 0
 			@orders_product.save!
 		end
-		# ここでsessionを全て消す！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+		session[:postal_code] = nil
+		session[:address] = nil
+		session[:name] = nil
 	end
 
 

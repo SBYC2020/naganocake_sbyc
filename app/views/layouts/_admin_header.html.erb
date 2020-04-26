@@ -5,17 +5,17 @@
         <!-- <h1 style="border: solid; :1px; padding: 10px 30px;">NAGANO CAKE</h1> -->
       <%# end %>
       <%= link_to root_path do %>
-      <h1>NAGANO CAKE</h1>
+      <h1 style="border: solid; :1px; padding: 10px 30px; color: white;">NAGANO CAKE</h1>
       <% end %>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right" style="font-size: 20px;">
             <% if admin_signed_in? %>
-              <li><%= link_to '商品一覧', admin_products_path %></li>
-              <li><%= link_to '会員一覧', admin_customers_path %></li>
-              <li><%= link_to '注文履歴一覧', admin_orders_path %></li>
-              <li><%= link_to 'ジャンル管理', admin_genres_path %></li>
-              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+              <li><%= link_to '商品一覧', admin_products_path, :style=>"color: white;" %></li>
+              <li><%= link_to '会員一覧', admin_customers_path, :style=>"color: white;" %></li>
+              <li><%= link_to '注文履歴一覧', admin_orders_path, :style=>"color: white;" %></li>
+              <li><%= link_to 'ジャンル管理', admin_genres_path, :style=>"color: white;" %></li>
+              <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, :style=>"color: white;" %></li>
         <div class="row">
               <td><form class="navbar-form navbar-right" role="search">
               <div class="form-group">

@@ -19,7 +19,7 @@ class CustomersController < ApplicationController
 
     def hide
         @customer = Customer.find(current_customer.id)
-        #is_deletedカラムにフラグを立てる(defaultはfalse)
+        #account_statusカラムにフラグを立てる(defaultはfalse)
         @customer.update(account_status: false)
         #ログアウトさせる
         reset_session
