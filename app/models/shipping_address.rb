@@ -11,3 +11,4 @@ validates :address, presence: true
 validates :address_name, presence: true
 
 end
+
