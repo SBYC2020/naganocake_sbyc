@@ -9,11 +9,11 @@ before_action :authenticate_admin!
 			   orders_products.order.update(order_status: "製作中")
 			end
 
-			if orders_products.order.orders_products.all? {|orders_product| orders_product.production_status =="製作完了"}
+			if orders_products.order.orders_products.all? { |orders_product| orders_product.production_status == "製作完了" }
 			   orders_products.order.update(order_status: "発送準備中")
 			end
 
-		   redirect_back(fallback_location: root_path)
+		    redirect_back(fallback_location: root_path)
 		else
 			render :show
 		end

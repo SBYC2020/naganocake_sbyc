@@ -39,7 +39,7 @@
 					<%= link_to product_path(p) do %>
 					  <%= attachment_image_tag p, :image, :fill, 150, 130, size: "180x150", fallback: "no_image.png", :alt => p.product_name %>
 					<% end %>
-						<p><%= p.product_name %></p>
+						<p><%= link_to p.product_name, product_path(p) %></p>
 						<p>¥<%= p.tax_included_price %></p>
 					</div>
 				<% end %>

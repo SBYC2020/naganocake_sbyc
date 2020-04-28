@@ -10,7 +10,7 @@
 	    			</tr>
 	    			<tr>
 	    				<th class="success">配送先</th><td><%= @order.postal_code %><br>
-	                     <%= @order.address %><br>
+	                     <%= @order.address %><%= @order.name %><br>
 	                 </td>
 	    			</tr>
 	    			<tr>
@@ -64,7 +64,7 @@
 	   			<td><%= orders_product.product.product_name %></td>
 	   			<td><%= orders_product.product.tax_included_price %></td>
 	   			<td><%= orders_product.quantity %></td>
-	   			<td><%= orders_product.price %></td>
+	   			<td><%= orders_product.price * orders_product.quantity%></td>
 	   		</tr>
 	   		<% end %>
 	   	</div>
@@ -73,14 +73,4 @@
 	 </div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
